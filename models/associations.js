@@ -1,11 +1,11 @@
-const { Champi } = require('/champiModel');
-const { Scientifiques } = require('/scientifiquesModel');
-const { Effets } = require('/effetsModel');
+const { Champi } = require('./champiModel');
+const { Scientifiques } = require('./scientifiquesModel');
+const { Effets } = require('./effetsModel');
 
-scientifiques.hasMany(champi, { as: "decouvertes" });
-champi.belongsTo(scientifiques);
+Scientifiques.hasMany(Champi, { as: "decouvertes" });
+Champi.belongsTo(Scientifiques);
 
-champi.belongToMany(effets, { through: "champiEffets" });
-effects.belongToMany(champi, { through: "champiEffets" });
+Champi.belongsToMany(Effets, { through: "champiEffets" });
+Effets.belongsToMany(Champi, { through: "champiEffets" });
 
 module.exports = { Champi, Scientifiques, Effets };

@@ -1,4 +1,4 @@
-const scientifiqueService = require('../services/scientifiqueServices');
+const scientifiqueService = require('../services/scientifiquesServices');
 
 async function getScientifiqueById(req, res) {
     try {

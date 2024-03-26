@@ -37,4 +37,4 @@ async function getAllScientifiques(criterias = {}) {
     }
 }
 
-module.exports = { createScientifique, getScientifiquetById, getAllScientifiques };
+module.exports = { createScientifique, getScientifiqueById, getAllScientifiques };
