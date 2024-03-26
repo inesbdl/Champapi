@@ -1,4 +1,4 @@
-const { Champi } = require('../models/associations.js');
+const { Champi, Effets } = require('../models/associations.js');
 
 async function createChampi(champi) {
     champi.nom = champi.nom.toUpperCase();
@@ -33,4 +33,6 @@ async function getAllChampis(criterias = {}) {
     }
 }
 
-module.exports = { createChampi, getChampiById, getAllChampis };
+
+
+module.exports = { createChampi, getChampiById, getAllChampis, addEffet };

@@ -37,4 +37,14 @@ async function createChampi(req, res) {
     }
 }
 
-module.exports = { getChampiById, getAllChampis, createChampi };
+async function addEffet (req, res){
+    try {
+        const id = req.params.id;
+        const champiEffet = await champiService.addEffet(req.body,id);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
+module.exports = { getChampiById, getAllChampis, createChampi, addEffet };

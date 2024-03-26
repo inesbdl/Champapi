@@ -6,6 +6,8 @@ const effetsController = require("../controllers/effetsController");
 router.get("/", effetsController.getAllEffets);
 router.post("/", effetsController.createEffet);
 
-router.get("/:id", effetsController.getEffetById)
+router.get("/:id", effetsController.getEffetById);
+
+
 
 module.exports = router;
