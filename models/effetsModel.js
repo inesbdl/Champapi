@@ -2,7 +2,7 @@
 const { db } = require("./db");
 const { DataTypes } = require("sequelize")
 
-const effets = db.define("effets", {
+const Effets = db.define("effets", {
     nom: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,4 +18,4 @@ const effets = db.define("effets", {
 }, {
 });
 
-module.exports = { effets };
+module.exports = { Effets };
