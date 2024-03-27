@@ -37,4 +37,15 @@ async function createEffet(req, res) {
     }
 }
 
-module.exports = { getEffetById, getAllEffets, createEffet };
+async function addEffetChampi (req, res){
+    try {
+        const id = req.params.id;
+        const effetChampi = await champiService.addChampiEffet(req.body,id);
+        res.json(effetChampi);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
+module.exports = { getEffetById, getAllEffets, createEffet, addEffetChampi };
