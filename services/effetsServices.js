@@ -1,4 +1,4 @@
-const {Effets} = require('../models/associations.js');
+const {Effets, Champi} = require('../models/associations.js');
 
 async function createEffet(effet) {
     effet.nom = effet.nom.toUpperCase();
@@ -6,7 +6,11 @@ async function createEffet(effet) {
 }
 
 async function getEffetById(id) {
-    const effet = await Effets.findByPk(id)
+    const effet = await Effets.findByPk(id, {
+        include: {
+            model: Champi,
+        }
+    })
     if (effet) {
         return effet.toJSON();
     }
@@ -23,7 +27,11 @@ async function getAllEffets(criterias = {}) {
     if (criterias.mortel) {
         where.mortel = criterias.mortel;
     }
-    const effets = await Effets.findAll({ where });
+    const effets = await Effets.findAll({ where }, {
+        include: {
+            model: Champi,
+        }
+    });
     if (effets) {
         return effets;
     }

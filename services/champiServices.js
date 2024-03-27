@@ -7,7 +7,11 @@ async function createChampi(champi) {
 }
 
 async function getChampiById(id) {
-    const champi = await Champi.findByPk(id)
+    const champi = await Champi.findByPk(id, {
+        include: {
+            model: Effets,
+        }
+    });
     if (champi) {
         return champi.toJSON();
     }
@@ -24,7 +28,11 @@ async function getAllChampis(criterias = {}) {
     if (criterias.famille) {
         where.famille = criterias.famille;
     }
-    const champis = await Champi.findAll({ where });
+    const champis = await Champi.findAll({ where }, {
+        include: {
+            model: Effets,
+        }
+    });
     if (champis) {
         return champis;
     }
