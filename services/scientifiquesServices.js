@@ -28,7 +28,7 @@ async function getAllScientifiques(criterias = {}) {
     if (criterias.centre) {
         where.centre = criterias.centre;
     }
-    const scientifiques = await Scientifiques.findAll({ where });
+    const scientifiques = await Scientifiques.findAll({ where , include: { model: Champi, as: Decouvertes }});
     if (scientifiques) {
         return scientifiques;
     }

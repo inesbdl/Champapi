@@ -40,7 +40,7 @@ async function createEffet(req, res) {
 async function addEffetChampi (req, res){
     try {
         const id = req.params.id;
-        const effetChampi = await champiService.addChampiEffet(req.body,id);
+        const effetChampi = await effetService.addChampiEffet(req.body,id);
         res.json(effetChampi);
     }
     catch (err) {
