@@ -10,6 +10,7 @@ async function getChampiById(id) {
     const champi = await Champi.findByPk(id, {
         include: {
             model: Effets,
+            model: Scientifiques
         }
     });
     if (champi) {
@@ -32,6 +33,7 @@ async function getAllChampis(criterias = {}) {
         where,
         include: {
             model: Effets,
+            model: Scientifiques
         }
     });
     if (champis) {
