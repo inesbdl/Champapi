@@ -40,4 +40,23 @@ async function getAllEffets(criterias = {}) {
     }
 }
 
-module.exports = { createEffet, getEffetById, getAllEffets };
+
+async function addEffetChampi(idChampis, effetId) {
+    const effet = await Effets.findByPk(effetId);
+    const tabIdChampis = idChampis.ids
+    tabIdChampis.forEach(async champiId => {
+        const isChampi = await Champi.findByPk(champiId)
+        if (isChampi) {
+            // verifier si champi et effet deja associés
+            const isEffetChampi = await Effets.findAll({ where: { id: effetId } , include: { model: Champi, where: { id: champiId } } });
+            if (isEffetChampi.lenght > 0) {
+                return null;
+            }
+            else {
+                return effet.addChampi(champiId);
+            }
+        }
+    })
+}
+
+module.exports = { createEffet, getEffetById, getAllEffets, addEffetChampi };

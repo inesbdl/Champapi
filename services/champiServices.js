@@ -49,9 +49,6 @@ async function addChampiEffet(idEffets, champiId) {
         const isEffet = await Effets.findByPk(effetId)
         if (isEffet) {
             // verifier si champi et effet deja associés
-            console.log("effet : " + effetId);
-            console.log("champi : " + champiId);
-
             const isChampiEffet = await Champi.findAll({ where: { id: champiId } , include: { model: Effets, where: { id: effetId } } });
             if (isChampiEffet.lenght > 0) {
                 console.log(isChampiEffet);
