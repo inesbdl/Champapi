@@ -51,8 +51,9 @@ async function addChampiEffet (req, res){
 
 async function addChampiScientifique (req, res){
     try {
-        const id = req.params.id;
-        const champiScientifique = await champiService.addChampiScientifique(req.body,id);
+        const idChampi = req.params.idChampi;
+        const idScientifique = req.params.idScientifique;
+        const champiScientifique = await champiService.addChampiScientifique(idScientifique,idChampi);
         res.json(champiScientifique);
     }
     catch (err) {
