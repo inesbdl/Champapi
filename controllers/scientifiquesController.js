@@ -40,7 +40,7 @@ async function createScientifique(req, res) {
 async function addScientifiqueChampi (req, res){
     try {
         const id = req.params.id;
-        const scientifiqueChampi = await champiService.addScientifiqueChampi(req.body,id);
+        const scientifiqueChampi = await scientifiqueService.addScientifiqueChampi(req.body,id);
         res.json(scientifiqueChampi);
     }
     catch (err) {
