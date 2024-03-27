@@ -8,6 +8,7 @@ router.post("/", champiController.createChampi);
 
 router.get("/:id", champiController.getChampiById);
 router.post("/:id/effet", champiController.addChampiEffet);
+router.post("/:idChampi/:idScientifique", champiController.addChampiEffet);
 
 
 module.exports = router;

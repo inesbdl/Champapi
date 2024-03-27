@@ -7,5 +7,6 @@ router.get("/", scientifiquesController.getAllScientifiques);
 router.post("/", scientifiquesController.createScientifique);
 
 router.get("/:id", scientifiquesController.getScientifiqueById)
+router.post("/:id/champi", scientifiquesController.addScientifiqueChampi)
 
 module.exports = router;

@@ -7,7 +7,7 @@ router.get("/", effetsController.getAllEffets);
 router.post("/", effetsController.createEffet);
 
 router.get("/:id", effetsController.getEffetById);
-router.post("/:id/effet", effetsController.addEffetChampi);
+router.post("/:id/champi", effetsController.addEffetChampi);
 
 
 

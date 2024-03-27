@@ -37,4 +37,15 @@ async function createScientifique(req, res) {
     }
 }
 
-module.exports = { getScientifiqueById, getAllScientifiques, createScientifique };
+async function addScientifiqueChampi (req, res){
+    try {
+        const id = req.params.id;
+        const scientifiqueChampi = await champiService.addScientifiqueChampi(req.body,id);
+        res.json(scientifiqueChampi);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
+module.exports = { getScientifiqueById, getAllScientifiques, createScientifique, addScientifiqueChampi };
