@@ -1,4 +1,4 @@
-const { Champi, Effets } = require('../models/associations.js');
+const { Champi, Effets, Scientifiques } = require('../models/associations.js');
 
 async function createChampi(champi) {
     champi.nom = champi.nom.toUpperCase();
@@ -49,9 +49,8 @@ async function addChampiEffet(idEffets, champiId) {
         const isEffet = await Effets.findByPk(effetId)
         if (isEffet) {
             // verifier si champi et effet deja associés
-            const isChampiEffet = await Champi.findAll({ where: { id: champiId } , include: { model: Effets, where: { id: effetId } } });
+            const isChampiEffet = await Champi.findAll({ where: { id: champiId }, include: { model: Effets, where: { id: effetId } } });
             if (isChampiEffet.lenght > 0) {
-                console.log(isChampiEffet);
                 return null;
             }
             else {
@@ -61,7 +60,21 @@ async function addChampiEffet(idEffets, champiId) {
     })
 }
 
+async function addChampiScientifique(idScientifique, champiId) {
+    const champi = await Champi.findByPk(champiId);
+    const isScientifique = await Scientifiques.findByPk(idScientifique)
+    if (isScientifique) {
+        // verifier si champi et effet deja associés
+        const isChampiScientifique = await Champi.findAll({ where: { id: champiId }, include: { model: Scientifiques, where: { id: idScientifique } } });
+        if (isChampiScientifique.lenght > 0) {
+            return null;
+        }
+        else {
+            return champi.addScientifique(idScientifique);
+        }
+    }
+}
 
 
 
-module.exports = { createChampi, getChampiById, getAllChampis, addChampiEffet };
+module.exports = { createChampi, getChampiById, getAllChampis, addChampiEffet, addChampiScientifique };
