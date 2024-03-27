@@ -45,7 +45,7 @@ async function addChampiEffet (idEffets, champiId){
     const champi = await Champi.findByPk(champiId);
     const where = {};
     where.champiId = champiId;
-    idEffets.forEach(async effetId =>{
+    idEffets.ids.forEach(async effetId =>{
         const isEffet = await Effets.findByPk(effetId)
         if (isEffet){
             // verifier si champi et effet deja associés
