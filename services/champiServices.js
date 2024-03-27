@@ -28,7 +28,8 @@ async function getAllChampis(criterias = {}) {
     if (criterias.famille) {
         where.famille = criterias.famille;
     }
-    const champis = await Champi.findAll({ where }, {
+    const champis = await Champi.findAll({
+        where,
         include: {
             model: Effets,
         }
@@ -41,23 +42,20 @@ async function getAllChampis(criterias = {}) {
     }
 }
 
-async function addChampiEffet (idEffets, champiId){
+async function addChampiEffet(idEffets, champiId) {
     const champi = await Champi.findByPk(champiId);
-    const where = {};
-    where.champiId = champiId;
     const tabIdEffets = idEffets.ids
-    tabIdEffets.forEach(async effetId =>{
+    tabIdEffets.forEach(async effetId => {
         const isEffet = await Effets.findByPk(effetId)
-        if (isEffet){
+        if (isEffet) {
             // verifier si champi et effet deja associés
-            where.effetId = effetId;
-            const isChampiEffet = await Champi.findAll({where}, {include : { model : Effets}});
-            if (isChampiEffet){
-                console.log("Ce champignon et cet effet sont déjà associés");
+            const isChampiEffet = await Champi.findAll({ where: { id: champiId } , include: { model: Effets, where: { id: effetId } } });
+            if (isChampiEffet.lenght > 0) {
+                console.log(isChampiEffet);
                 return null;
             }
             else {
-                champi.addEffet(effetId);
+                return champi.addEffet(effetId);
             }
         }
     })
@@ -66,4 +64,4 @@ async function addChampiEffet (idEffets, champiId){
 
 
 
-module.exports = { createChampi, getChampiById, getAllChampis, addChampiEffet};
+module.exports = { createChampi, getChampiById, getAllChampis, addChampiEffet };
