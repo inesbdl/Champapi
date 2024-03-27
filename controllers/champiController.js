@@ -48,4 +48,15 @@ async function addChampiEffet (req, res){
     }
 }
 
-module.exports = { getChampiById, getAllChampis, createChampi, addChampiEffet };
+
+async function addChampiScientifique (req, res){
+    try {
+        const id = req.params.id;
+        const champiScientifique = await champiService.addChampiScientifique(req.body,id);
+        res.json(champiScientifique);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+}
+module.exports = { getChampiById, getAllChampis, createChampi, addChampiEffet, addChampiScientifique };
