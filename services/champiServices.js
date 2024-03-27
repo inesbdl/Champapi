@@ -33,6 +33,28 @@ async function getAllChampis(criterias = {}) {
     }
 }
 
+async function addChampiEffet (idEffets, champiId){
+    const champi = await Champi.findByPk(champiId);
+    const where = {};
+    where.champiId = champiId;
+    idEffets.forEach(async effetId =>{
+        const isEffet = await Effets.findByPk(effetId)
+        if (isEffet){
+            // verifier si champi et effet deja associés
+            where.effetId = effetId;
+            const isChampiEffet = await Champi.findAll({where}, {include : { model : Effets}});
+            if (isChampiEffet){
+                console.log("Ce champignon et cet effet sont déjà associés");
+                return null;
+            }
+            else {
+                champi.addEffet(effetId);
+            }
+        }
+    })
+}
 
 
-module.exports = { createChampi, getChampiById, getAllChampis, addEffet };
+
+
+module.exports = { createChampi, getChampiById, getAllChampis, addChampiEffet};

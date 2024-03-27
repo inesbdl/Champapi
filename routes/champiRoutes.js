@@ -7,7 +7,7 @@ router.get("/", champiController.getAllChampis);
 router.post("/", champiController.createChampi);
 
 router.get("/:id", champiController.getChampiById);
-router.get("/:id/effet", champiController.getEffetById);
+router.post("/:id/effet", champiController.addChampiEffet);
 
 
 module.exports = router;
