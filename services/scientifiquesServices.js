@@ -28,14 +28,14 @@ async function getAllScientifiques(criterias = {}) {
     if (criterias.centre) {
         where.centre = criterias.centre;
     }
-    const scientifiques = await Scientifiques.findAll({ where , include: { model: Champi, as: decouvertes }});
+    const scientifiques = await Scientifiques.findAll({ where , include: { model: Champi, as: "decouvertes" }});
     if (scientifiques) {
         return scientifiques;
     }
     else {
         return null;
     }
-}
+} 
 
 async function addScientifiqueChampi(idChampis, scientifiqueId) {
     const scientifique = await Scientifiques.findByPk(scientifiqueId);
